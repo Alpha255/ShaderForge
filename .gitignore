@@ -283,3 +283,15 @@ SF_DLL_BUILDER/ShaderForge/ShaderForge.csproj
 SF_DLL_BUILDER/
 Shader Forge/.idea
 Shader Forge/.vs
+
+Shader Forge.meta
+Shader Forge/ProjectSettings/*.meta
+Shader Forge/ProjectSettings.meta
+Shader Forge/Packages/*.meta
+Shader Forge/Packages.meta
+README.md.meta
+Shader Forge/Logs/**
+Shader Forge/Logs.meta
+Shader Forge/TesterManual.txt.meta
+Shader Forge/UpgradeLog.htm.meta
+Shader Forge/Assets.meta

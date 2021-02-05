@@ -19,9 +19,14 @@ namespace ShaderForge {
 			return GetTagString() + GetVariable() + " (\"" + nameDisplay + "\", Vector) = (" + GetValue().r + "," + GetValue().g + "," + GetValue().b + "," + GetValue().a + ")";
 		}
 
-		Color GetValue() => ( node as SFN_Vector4Property ).texture.dataUniform;
+        Color GetValue()
+        {
+            return (node as SFN_Vector4Property).texture.dataUniform;
+        }
 
-		public override string GetCGType() => node.precision.ToCode() + "4";
-
+        public override string GetCGType()
+        {
+            return node.precision.ToCode() + "4";
+        }
 	}
 }

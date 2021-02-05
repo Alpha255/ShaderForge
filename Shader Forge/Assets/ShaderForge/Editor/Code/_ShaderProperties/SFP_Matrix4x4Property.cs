@@ -21,7 +21,10 @@ namespace ShaderForge {
 			return Color.black;
 		}
 
-		public override string GetCGType() => node.precision.ToCode() + "4x4";
+        public override string GetCGType()
+        {
+            return node.precision.ToCode() + "4x4";
+        }
 
 	}
 }

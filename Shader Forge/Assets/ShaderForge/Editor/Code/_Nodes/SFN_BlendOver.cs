@@ -40,7 +40,10 @@ namespace ShaderForge {
 			}
 		}
 
-		public override string SerializeSpecialData() => "gmcr:" + gammaCorrect.ToString();
+        public override string SerializeSpecialData()
+        {
+            return "gmcr:" + gammaCorrect.ToString();
+        }
 		public override void DeserializeSpecialData( string key, string value ) {
 			if( key == "gmcr" )
 				gammaCorrect = bool.Parse( value );
@@ -52,11 +55,20 @@ namespace ShaderForge {
 			base.OnUpdateNode( updType );
 		}
 
-		public override bool IsUniformOutput() => ( GetInputData( "SRC" ).uniform && GetInputData( "DST" ).uniform );
+        public override bool IsUniformOutput()
+        {
+            return (GetInputData("SRC").uniform && GetInputData("DST").uniform);
+        }
 
-		public override int GetEvaluatedComponentCount() => 4;
+        public override int GetEvaluatedComponentCount()
+        {
+            return 4;
+        }
 
-		public override string GetBlitShaderSuffix() => gammaCorrect ? "GammaCorr" : "Simple";
+        public override string GetBlitShaderSuffix()
+        {
+            return gammaCorrect ? "GammaCorr" : "Simple";
+        }
 
 		public override string Evaluate( OutChannel channel = OutChannel.All ) {
 			string src = GetConnectorByStringID( "SRC" ).TryEvaluate();

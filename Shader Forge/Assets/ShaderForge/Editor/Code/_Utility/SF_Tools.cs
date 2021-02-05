@@ -79,9 +79,14 @@ namespace ShaderForge {
 			}
 		}
 
-		public static bool CanRunShaderForge() => ( CurrentUnityVersion >= minimumUnityVersion );
-		public static bool HasUnityPro() => UnityEditorInternal.InternalEditorUtility.HasPro();
-
+        public static bool CanRunShaderForge()
+        {
+            return (CurrentUnityVersion >= minimumUnityVersion);
+        }
+        public static bool HasUnityPro()
+        {
+            return UnityEditorInternal.InternalEditorUtility.HasPro();
+        }
 
 		public static void UnityOutOfDateGUI(){
 			GUIStyle st = new GUIStyle(EditorStyles.boldLabel);

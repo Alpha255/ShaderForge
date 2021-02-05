@@ -295,17 +295,19 @@ namespace UnityEditor {
                 this.ShowShaderErrors(s);
         }
 		private void ShowShaderErrors( Shader s ) {
-			ShaderMessage[] messages = ShaderUtil.GetShaderMessages( s );
+#if UNITY_2019
+            ShaderMessage[] messages = ShaderUtil.GetShaderMessages( s );
 			if( messages.Length > 0 ) {
 				this.m_ScrollPosition = GUILayout.BeginScrollView( this.m_ScrollPosition, false, false );
 				foreach( ShaderMessage msg in messages ) {
 					using( new GUILayout.VerticalScope( EditorStyles.helpBox ) ) {
 						Texture2D icon = msg.severity == Rendering.ShaderCompilerMessageSeverity.Error ? SF_Styles.IconErrorSmall : SF_Styles.IconWarningSmall;
-						GUILayout.Label( new GUIContent( $"{msg.message} at line {msg.line} on {msg.platform}", icon ) );
+						GUILayout.Label( new GUIContent( string.Format("{0} at line {1} on {}", msg.message, msg.line, msg.platform), icon ) );
 					}
 				}
 				GUILayout.EndScrollView();
 			}
+#endif
 		}
         private void ShowShaderProperties(Shader s)
         {

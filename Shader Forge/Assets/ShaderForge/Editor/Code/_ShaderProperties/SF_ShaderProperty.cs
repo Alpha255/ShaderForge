@@ -228,11 +228,14 @@ namespace ShaderForge {
 		}
 
 
-		public virtual string GetVariable() => nameInternal;
+		public virtual string GetVariable()
+        {
+            return nameInternal;
+        }
 
 		public string EvalProperty() {
 			if( IsInstancedType() )
-				return $"UNITY_ACCESS_INSTANCED_PROP( Props, {GetVariable()} )";
+				return string.Format("UNITY_ACCESS_INSTANCED_PROP( Props, {0} )", GetVariable());
 			else
 				return GetVariable();
 		}
@@ -285,11 +288,11 @@ namespace ShaderForge {
 		}
 
 		public virtual string GetVariableLine() {
-			return $"uniform {GetCGType()} {GetVariable()};";
+			return string.Format("uniform {0} {1};", GetCGType(), GetVariable());
 		}
 
 		public virtual string GetFragmentPrepare() {
-			return $"{GetCGType()} {GetVariable()} = {node.Evaluate()};";
+			return string.Format("{0} {1} = {2};", GetCGType(), GetVariable(), node.Evaluate());
 		}
 
 

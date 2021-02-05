@@ -17,7 +17,9 @@ namespace ShaderForge {
 			return GetTagString() + GetVariable() + " (\"" + nameDisplay + "\", Float ) = " + defaultValue;
 		}
 
-		public override string GetCGType() => node.precision.ToCode();
-
+        public override string GetCGType()
+        {
+            return node.precision.ToCode();
+        }
 	}
 }

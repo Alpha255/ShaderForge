@@ -93,14 +93,17 @@ namespace ShaderForge {
 
 		public override string Evaluate( OutChannel channel = OutChannel.All ) {
 			string v = GetConnectorByStringID( "IN" ).TryEvaluate();
-			return $"({v}-{invlerp_a})/({invlerp_b}-{invlerp_a})";
+			return string.Format("({0}-{1})/({2}-{3})", v, invlerp_a, invlerp_b, invlerp_a);
 		}
 
 		public override float EvalCPU( int c ) {
 			return InverseLerp( invlerp_a, invlerp_b, GetInputData( "IN", c ) );
 		}
 
-		float InverseLerp( float a, float b, float v ) => ( v - a ) / ( b - a );
+        float InverseLerp(float a, float b, float v)
+        {
+            return (v - a) / (b - a);
+        }
 
 		public override string SerializeSpecialData() {
 			string s = "a:" + invlerp_a + ",";

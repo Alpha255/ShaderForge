@@ -133,7 +133,7 @@ namespace ShaderForge {
 		public override string Evaluate( OutChannel channel = OutChannel.All ) {
 			string a = GetConnectorByStringID( "A" ).TryEvaluate();
 			string b = GetConnectorByStringID( "B" ).TryEvaluate();
-			return $"lerp( {a}, {b}, {property.EvalProperty()} )";
+			return string.Format("lerp( {0}, {1}, {2} )", a, b, property.EvalProperty());
 		}
 		
 		public override float EvalCPU( int c ) {

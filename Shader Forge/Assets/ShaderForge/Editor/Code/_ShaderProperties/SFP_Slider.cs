@@ -23,12 +23,22 @@ namespace ShaderForge {
 			return GetTagString() + GetVariable() + " (\"" + nameDisplay + "\", Range(" + GetMin() + ", " + GetMax() + ")) = " + defaultValue;
 		}
 
-		float GetMin() => ( node as SFN_Slider ).min;
-		float GetMax() => ( node as SFN_Slider ).max;
-		float GetCurrent() => ( node as SFN_Slider ).current;
+        float GetMin()
+        {
+            return (node as SFN_Slider).min;
+        }
+        float GetMax()
+        {
+            return (node as SFN_Slider).max;
+        }
+        float GetCurrent()
+        {
+            return (node as SFN_Slider).current;
+        }
 
-		public override string GetCGType() => node.precision.ToCode();
-
-
+        public override string GetCGType()
+        {
+            return node.precision.ToCode();
+        }
 	}
 }

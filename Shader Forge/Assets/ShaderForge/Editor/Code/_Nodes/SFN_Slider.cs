@@ -46,8 +46,15 @@ namespace ShaderForge {
 		public override string Evaluate( OutChannel channel = OutChannel.All ) {
 			return property.EvalProperty();
 		}
-		public override float EvalCPU( int c ) => current;
-		public override bool IsUniformOutput() => true;
+        public override float EvalCPU(int c)
+        {
+            return current;
+        }
+
+        public override bool IsUniformOutput()
+        {
+            return true;
+        }
 
 
 		public override void NeatWindow( ) {

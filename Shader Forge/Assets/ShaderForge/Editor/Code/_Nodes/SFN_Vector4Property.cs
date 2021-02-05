@@ -32,7 +32,10 @@ namespace ShaderForge {
 			};
 		}
 
-		public override bool IsUniformOutput() => true;
+        public override bool IsUniformOutput()
+        {
+            return true;
+        }
 
 		public override string Evaluate( OutChannel channel = OutChannel.All ) {
 			return property.EvalProperty();

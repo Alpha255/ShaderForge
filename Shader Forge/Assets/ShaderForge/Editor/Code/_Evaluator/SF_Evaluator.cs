@@ -43,9 +43,27 @@ namespace ShaderForge {
 		public static PassType currentPass = PassType.FwdBase;
 		public static ShaderProgram currentProgram = ShaderProgram.Vert;
 
-		public static bool inFrag => SF_Evaluator.currentProgram == ShaderProgram.Frag;
-		public static bool inVert => SF_Evaluator.currentProgram == ShaderProgram.Vert;
-		public static bool inTess => SF_Evaluator.currentProgram == ShaderProgram.Tess;
+		public static bool inFrag
+        {
+            get
+            {
+                return SF_Evaluator.currentProgram == ShaderProgram.Frag;
+            }
+        }
+		public static bool inVert
+        {
+            get
+            {
+                return SF_Evaluator.currentProgram == ShaderProgram.Vert;
+            }
+        }
+		public static bool inTess
+        {
+            get
+            {
+                return SF_Evaluator.currentProgram == ShaderProgram.Tess;
+            }
+        }
 
 		public static string WithProgramPrefix( string s ) {
 			if( SF_Evaluator.inFrag )
@@ -526,9 +544,9 @@ namespace ShaderForge {
 		void PropertiesCG() {
 
 
-			bool ValidProperty( SF_Node n ) {  // SpecColor already defined in Lighting.cginc
-				return !( ( IncludeLightingCginc() || IncludeUnity5BRDF() ) && n.property.nameInternal == "_SpecColor" );
-			}
+            System.Func<SF_Node, bool> ValidProperty = (n) => {  // SpecColor already defined in Lighting.cginc
+                return !((IncludeLightingCginc() || IncludeUnity5BRDF()) && n.property.nameInternal == "_SpecColor");
+            };
 
 			// Non-instanced properties
 			for( int i = 0; i < cNodes.Count; i++ ) {
@@ -544,7 +562,7 @@ namespace ShaderForge {
 				App( "UNITY_INSTANCING_BUFFER_START( Props )" );
 				scope++;
 				foreach( SF_Node node in cNodes.Where(n => n.IsProperty() && n.property.IsInstancedType() && ValidProperty(n) ) )
-					App( $"UNITY_DEFINE_INSTANCED_PROP( {node.property.GetCGType()}, {node.property.nameInternal})" );
+					App( string.Format("UNITY_DEFINE_INSTANCED_PROP( {0}, {1})", node.property.GetCGType(), node.property.nameInternal) );
 				scope--;
 				App( "UNITY_INSTANCING_BUFFER_END( Props )" );
 			}
